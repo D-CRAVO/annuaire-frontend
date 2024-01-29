@@ -10,6 +10,7 @@ import { AnnuaireService } from './annuaire.service';
 export class AppComponent implements OnInit{
   title = 'annuaire-frontend';
   users: any;
+  phoneList: any;
   
   constructor(private annuaireService: AnnuaireService){
     this.users = [];
@@ -17,8 +18,11 @@ export class AppComponent implements OnInit{
 
   ngOnInit(): void {
       console.log('On Init ...')
-      this.annuaireService.getUsers().subscribe(datas => {
-        this.users = datas;
+      this.annuaireService.getUsers().subscribe(data => {
+        this.users = data;
+      })
+      this.annuaireService.getPhonesByUserId(1).subscribe(data=> {
+        this.phoneList = data;
       })
   }
 }
