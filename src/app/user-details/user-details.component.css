@@ -1,0 +1,47 @@
+.mat-card{
+    display: flex;
+}
+
+.left-part{
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.right-part{
+    display: flex;
+    justify-content: center;
+}
+
+.img-profil{
+    width: 300px;
+}
+
+
+.img-profil img{
+    width: 100%;
+    height: auto;
+}
+
+.mat-card{
+    position: relative;
+    padding-left: 350px;
+}
+
+.mat-card-title{
+    padding-bottom: 20px;
+}
+
+.mat-list-item{
+    padding-left: 0;
+}
+
+.mat-raised-button{
+    margin-bottom: 30px;
+}
+
+.tile{
+    text-align: start;
+}

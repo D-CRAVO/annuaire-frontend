@@ -1,0 +1,32 @@
+<mat-card class="mat-card">
+    <div class="left-part">
+        <div class="container-img-profile">
+            <img mat-card-image src="../../assets/images/Homme.svg" class="img-profil">
+        </div>
+    </div>
+    <div class="center-part">
+        <mat-card-header>
+            <mat-card-title class="mat-card-title">
+                Nom : {{user.lastname}} 
+            </mat-card-title>
+            <mat-card-title class="mat-card-title">
+                Prénom : {{user.firstname}}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item class="mat-list-item">Adresse : {{user.address}}</mat-list-item>
+                <mat-list-item class="mat-list-item">Code postal : {{user.zipCode}}</mat-list-item>
+                <mat-list-item class="mat-list-item">Ville : {{user.city}}</mat-list-item>
+                <mat-list-item class="mat-list-item">Tél. personnel : {{phones[0].number}}</mat-list-item>
+                <mat-list-item class="mat-list-item">Tél. professionnel : {{phones[1].number}}</mat-list-item>
+                <mat-list-item class="mat-list-item">Email personnel : {{emails[0].address}}</mat-list-item>
+                <mat-list-item class="mat-list-item">Email professionnel : {{emails[1].address}}</mat-list-item>
+            </mat-list>
+        </mat-card-content>
+    </div>
+    <div class="right-part">
+        <button mat-raised-button color="warn" class="mat-raised-button">Supprimer</button>
+    </div>
+        
+</mat-card>
