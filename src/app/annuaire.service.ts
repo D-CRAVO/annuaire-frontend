@@ -12,6 +12,7 @@ export class AnnuaireService {
   readonly ENDPOINT_USER = "/user";
   readonly ENDPOINT_PHONES = "/phones"
   readonly ENDPOINT_PHONE = "/phone"
+  readonly ENDPOINT_EMAILS = "/emails"
 
   constructor(private httpClient: HttpClient) { 
 
@@ -31,5 +32,9 @@ export class AnnuaireService {
 
   getPhonesByUserId(userId: number){
     return this.httpClient.get(this.API_URL+`/${userId}`+this.ENDPOINT_PHONES);
+  }
+
+  getEmailsByUserId(userId: number){
+    return this.httpClient.get(this.API_URL+`/${userId}`+this.ENDPOINT_EMAILS);
   }
 }

@@ -9,20 +9,42 @@ import { AnnuaireService } from './annuaire.service';
 })
 export class AppComponent implements OnInit{
   title = 'annuaire-frontend';
+
   users: any;
-  phoneList: any;
-  
+  phones: any;
+  emails: any;
+  usersAndPhones: string[];
+
+
   constructor(private annuaireService: AnnuaireService){
-    this.users = [];
+    this.usersAndPhones= []
   }
 
   ngOnInit(): void {
-      console.log('On Init ...')
-      this.annuaireService.getUsers().subscribe(data => {
-        this.users = data;
-      })
-      this.annuaireService.getPhonesByUserId(1).subscribe(data=> {
-        this.phoneList = data;
-      })
+      console.log('On Init ... app.component')
+      // this.annuaireService.getUsers().subscribe(data => {
+      //   this.users = data;
+      // })
+      // this.annuaireService.getPhonesByUserId(1).subscribe(data=> {
+      //   this.phones = data;
+      // })
+      // this.annuaireService.getEmailsByUserId(1).subscribe(data=> {
+      //   this.emails = data;
+      // })
+
+      this.annuaireService.getUsers().subscribe(users => {
+        this.users = users;
+        console.table(users)
+        for (const user of this.users) {
+          this.annuaireService.getPhonesByUserId(user.id).subscribe((phones) => {
+            this.phones = phones
+            console.table(phones)
+          });
+          this.annuaireService.getEmailsByUserId(user.id).subscribe((emails) => {
+            this.emails = emails
+            console.table(emails)
+          });
+        }
+      });
   }
 }
