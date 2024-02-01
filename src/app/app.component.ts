@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnuaireService } from './annuaire.service';
+import { table } from 'console';
+import { UserAndPhones } from './models/userAndPhones';
+import { forkJoin, switchMap, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -13,38 +16,50 @@ export class AppComponent implements OnInit{
   users: any;
   phones: any;
   emails: any;
-  usersAndPhones: string[];
+  usersAndPhones: UserAndPhones[] = []
+
 
 
   constructor(private annuaireService: AnnuaireService){
-    this.usersAndPhones= []
   }
 
   ngOnInit(): void {
       console.log('On Init ... app.component')
-      // this.annuaireService.getUsers().subscribe(data => {
-      //   this.users = data;
-      // })
-      // this.annuaireService.getPhonesByUserId(1).subscribe(data=> {
-      //   this.phones = data;
-      // })
-      // this.annuaireService.getEmailsByUserId(1).subscribe(data=> {
-      //   this.emails = data;
-      // })
+      // const result = this.annuaireService.getUsers().pipe(
+      //   switchMap(sourceValue => {
+      //     console.log(sourceValue);
+      //     return;
+      //   })
+      // )
+      
+      const switched = of(1, 2, 3).pipe(switchMap(x => of(x, x ** 2, x ** 3)));
+      switched.subscribe(x => console.log(x));
 
-      this.annuaireService.getUsers().subscribe(users => {
-        this.users = users;
-        console.table(users)
-        for (const user of this.users) {
-          this.annuaireService.getPhonesByUserId(user.id).subscribe((phones) => {
-            this.phones = phones
-            console.table(phones)
-          });
-          this.annuaireService.getEmailsByUserId(user.id).subscribe((emails) => {
-            this.emails = emails
-            console.table(emails)
-          });
-        }
-      });
+      
+
+      // forkJoin([
+      //   this.annuaireService.getUsers()
+      // ])
+      // this.annuaireService.getUsers().subscribe(users => {
+      //   this.users = users;
+        
+      //   console.table(this.usersAndPhones)
+      // });
+      // for (const user of this.users) {
+      //     this.annuaireService.getPhonesByUserId(user.id).subscribe((phones) => {
+      //       this.phones = phones
+      //       this.usersAndPhones.push(new UserAndPhones(user.id, this.phones[0].number))
+      //       console.table(this.usersAndPhones);
+            
+      //     });
+          // this.annuaireService.getEmailsByUserId(user.id).subscribe((emails) => {
+          //   this.emails = emails
+          //   console.table(emails)
+          // });
+        //}
+  }
+
+  private updateData(users: any[], phones: any[]) {
+
   }
 }

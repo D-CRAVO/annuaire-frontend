@@ -23,6 +23,7 @@ export class UserListComponent implements OnInit{
   }
 
   getProfessionalPhoneByUserId(userId: number){
+    console.log("test")
     this.annuaireService.getPhonesByUserId(userId).subscribe(phones => this.phones = phones)
     this.phone = this.phones[0].number
     console.log(this.phone)
