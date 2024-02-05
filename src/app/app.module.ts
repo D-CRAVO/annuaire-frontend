@@ -13,15 +13,19 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list'
+import {MatFormFieldModule} from '@angular/material/form-field'; 
+
 import { FormsModule } from '@angular/forms';
 import { UserFormComponent } from './components/user-form/user-form.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
     UserDetailsComponent,
-    UserFormComponent
+    UserFormComponent,
+    EditUserComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +37,8 @@ import { UserFormComponent } from './components/user-form/user-form.component';
     MatGridListModule,
     MatIconModule,
     MatDividerModule,
-    MatListModule
+    MatListModule,
+    MatFormFieldModule
   ],
   providers: [
     provideClientHydration()

@@ -1,0 +1,71 @@
+<form *ngIf="user" (ngSubmit)="onSubmit" #userForm="ngForm">
+
+    <mat-form-field>
+        <mat-label>Nom : </mat-label>
+        <input matInput type="text" id="lastname" 
+            required
+            pattern="^[a-zA-Zàéèç]{}$"
+            [(ngModel)]="user.lastname" name="lastname" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine">
+            Le nom est requis
+        </div>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Prénom : </mat-label>
+        <input matInput type="text" id="firstname" 
+            required
+            pattern="^[a-zA-Zàéèç0-9]{}$"
+            [(ngModel)]="user.firstname" name="firstname" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine">
+            Le prénom est requis
+        </div>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Adresse : </mat-label>
+        <input matInput type="text" id="address" 
+            required
+            pattern="^[a-zA-Zàéèç0-9]{}$"
+            [(ngModel)]="user.address" name="address" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine">
+            L'adresse est requise
+        </div>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Code postal : </mat-label>
+        <input matInput type="text" id="zipCode" 
+            required
+            pattern="^[a-zA-Zàéèç0-9]{}$"
+            [(ngModel)]="user.zipCode" name="zipCode" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine">
+            Le code postal est requis
+        </div>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Ville : </mat-label>
+        <input matInput type="text" id="city" 
+            required
+            pattern="^[a-zA-Zàéèç0-9]{}$"
+            [(ngModel)]="user.city" name="city" #name="ngModel">
+        <div [hidden]="name.valid || name.pristine">
+            La ville est requise
+        </div>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Tél. personnel </mat-label>
+        <input matInput type="tel"  id="personalPhone" 
+            [(ngModel)]="phones[0].number" name="personalPhone" #name="ngModel">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Tél. professionnel </mat-label>
+        <input matInput type="tel" id="professionalPhone" 
+            [(ngModel)]="phones[1].number" name="professionalPhone" #name="ngModel">
+    </mat-form-field>
+
+    <button mat-button color="primary" type="submit" [disabled]="!userForm.form.valid">Soumettre</button>
+</form>
+<h3 *ngIf="!user">Aucun contact à éditer...</h3>
