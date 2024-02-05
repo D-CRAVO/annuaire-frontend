@@ -8,23 +8,8 @@ export class AnnuaireService {
 
   readonly API_URL = "http://localhost:8080"
 
-  
-  
-  
-  readonly ENDPOINT_EMAILS = "/emails"
-
   constructor(
     private httpClient: HttpClient
   ) { 
-
-  }
-
-  
-  
-
-  
-
-  getEmailsByUserId(userId: number){
-    return this.httpClient.get(this.API_URL+`/${userId}`+this.ENDPOINT_EMAILS);
   }
 }
