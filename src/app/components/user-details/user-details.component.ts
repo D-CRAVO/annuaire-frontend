@@ -33,7 +33,7 @@ export class UserDetailsComponent {
     if (userId){
       this.userService.getUserById(+userId).subscribe(user => this.user = user)
       this.phoneService.getPhonesByUserId(+userId).subscribe(phones => this.phones = phones)
-      this.phoneService.getEmailsByUserId(+userId).subscribe(emails => this.emails = emails)
+      this.emailService.getEmailsByUserId(+userId).subscribe(emails => this.emails = emails)
     }
   
   }
