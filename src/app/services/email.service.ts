@@ -14,7 +14,7 @@ export class EmailService {
     private annuaireService: AnnuaireService
   ) { }
 
-  getEmailsByUSerId(userId: number){
-    this.httpClient.get(this.annuaireService.API_URL + this.ENDPOINT_EMAILS)
+  getEmailsByUserId(userId: number){
+    return this.httpClient.get(this.annuaireService.API_URL +`/${userId}` + this.ENDPOINT_EMAILS)
   }
 }

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { AnnuaireService } from '../../services/annuaire.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../../models/User';
 import { UserService } from '../../services/user.service';
 import { PhoneService } from '../../services/phone.service';
+import { EmailService } from '../../services/email.service';
+import { Subject, forkJoin, takeUntil } from 'rxjs';
 
 export interface Tile{
   cols: number;
@@ -24,17 +24,31 @@ export class UserDetailsComponent {
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private phoneService: PhoneService
+    private phoneService: PhoneService,
+    private emailService: EmailService
   ){}
 
   ngOnInit(){
     const userId : string | null = this.route.snapshot.paramMap.get('id');
 
     if (userId){
-      this.userService.getUserById(+userId).subscribe(user => this.user = user)
-      this.phoneService.getPhonesByUserId(+userId).subscribe(phones => this.phones = phones)
-      this.emailService.getEmailsByUserId(+userId).subscribe(emails => this.emails = emails)
+      forkJoin([
+        this.userService.getUserById(+userId), //.subscribe(user => this.user = user)
+        this.phoneService.getPhonesByUserId(+userId), //.subscribe(phones => this.phones = phones)
+        this.emailService.getEmailsByUserId(+userId) //.subscribe(emails => this.emails = emails)
+      ]).subscribe(([user, phones, emails]: [any, any, any]) => {this.updateData(user, phones, emails)})
     }
-  
+
+    // if (userId){
+    //     this.userService.getUserById(+userId).subscribe(user => this.user = user)
+    //     this.phoneService.getPhonesByUserId(+userId).subscribe(phones => this.phones = phones)
+    //     this.emailService.getEmailsByUserId(+userId).subscribe(emails => this.emails = emails)
+    // }
+  }
+
+  updateData(user: any, phones: any, emails: any){
+    this.user = user
+    this.phones = phones
+    this.emails = emails
   }
 }

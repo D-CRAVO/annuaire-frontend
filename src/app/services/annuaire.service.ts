@@ -13,7 +13,9 @@ export class AnnuaireService {
   
   readonly ENDPOINT_EMAILS = "/emails"
 
-  constructor() { 
+  constructor(
+    private httpClient: HttpClient
+  ) { 
 
   }
 

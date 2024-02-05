@@ -6,22 +6,22 @@
     </div>
     <div class="center-part">
         <mat-card-header>
-            <mat-card-title class="mat-card-title">
+            <mat-card-title class="mat-card-title" *ngIf="user">
                 Nom : {{user.lastname}} 
             </mat-card-title>
-            <mat-card-title class="mat-card-title">
+            <mat-card-title class="mat-card-title" *ngIf="user">
                 Prénom : {{user.firstname}}
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <mat-list>
-                <mat-list-item class="mat-list-item">Adresse : {{user.address}}</mat-list-item>
-                <mat-list-item class="mat-list-item">Code postal : {{user.zipCode}}</mat-list-item>
-                <mat-list-item class="mat-list-item">Ville : {{user.city}}</mat-list-item>
-                <mat-list-item class="mat-list-item">Tél. personnel : {{phones[0].number}}</mat-list-item>
-                <mat-list-item class="mat-list-item">Tél. professionnel : {{phones[1].number}}</mat-list-item>
-                <mat-list-item class="mat-list-item">Email personnel : {{emails[0].address}}</mat-list-item>
-                <mat-list-item class="mat-list-item">Email professionnel : {{emails[1].address}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Adresse : {{user.address}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Code postal : {{user.zipCode}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Ville : {{user.city}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Tél. personnel : {{phones[0].number}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Tél. professionnel : {{phones[1].number}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Email personnel : {{emails[0].address}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Email professionnel : {{emails[1].address}}</mat-list-item>
             </mat-list>
         </mat-card-content>
     </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnuaireService } from '../../services/annuaire.service';
 import { User } from '../../models/User';
+import { PhoneService } from '../../services/phone.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-list',
@@ -15,16 +17,18 @@ export class UserListComponent implements OnInit{
   phone: any;
 
   constructor(
-    private annuaireService: AnnuaireService
+    private annuaireService: AnnuaireService,
+    private userService: UserService,
+    private phoneService: PhoneService
   ){}
 
   ngOnInit(){
-    this.annuaireService.getUsers().subscribe(users => this.users = users)
+    this.userService.getUsers().subscribe(users => this.users = users)
   }
 
   getProfessionalPhoneByUserId(userId: number){
     console.log("test")
-    this.annuaireService.getPhonesByUserId(userId).subscribe(phones => this.phones = phones)
+    this.phoneService.getPhonesByUserId(userId).subscribe(phones => this.phones = phones)
     this.phone = this.phones[0].number
     console.log(this.phone)
     return this.phone
