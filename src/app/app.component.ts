@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AnnuaireService } from './annuaire.service';
+import { AnnuaireService } from './services/annuaire.service';
 import { table } from 'console';
 import { UserAndPhones } from './models/userAndPhones';
 import { forkJoin, switchMap, of } from 'rxjs';
+import { User } from './models/User';
+import { PhoneService } from './services/phone.service';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,30 +15,28 @@ import { forkJoin, switchMap, of } from 'rxjs';
 })
 export class AppComponent implements OnInit{
   title = 'annuaire-frontend';
-
+  user: any;
   users: any;
   phones: any;
   emails: any;
   usersAndPhones: UserAndPhones[] = []
 
+  test: any;
 
-
-  constructor(private annuaireService: AnnuaireService){
+  constructor(
+    private annuaireService: AnnuaireService,
+    private phoneService: PhoneService,
+    private userService: UserService
+    ){
   }
 
   ngOnInit(): void {
       console.log('On Init ... app.component')
-      // const result = this.annuaireService.getUsers().pipe(
-      //   switchMap(sourceValue => {
-      //     console.log(sourceValue);
-      //     return;
-      //   })
-      // )
+      this.userService.getUsers().subscribe(users => this.users = users)
       
-      const switched = of(1, 2, 3).pipe(switchMap(x => of(x, x ** 2, x ** 3)));
-      switched.subscribe(x => console.log(x));
+      // const switched = of(1, 2, 3).pipe(switchMap(x => of(x, x ** 2, x ** 3)));
+      // switched.subscribe(x => console.log(x));
 
-      
 
       // forkJoin([
       //   this.annuaireService.getUsers()
@@ -59,7 +60,10 @@ export class AppComponent implements OnInit{
         //}
   }
 
-  private updateData(users: any[], phones: any[]) {
-
+  getUserWithPhones(userId: number){
+    
+    this.test = this.phoneService.getPhonesByUserId(+userId).subscribe(phones => this.phones = phones)
+    console.log(userId)
+    return this.test
   }
 }
