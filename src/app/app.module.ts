@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
+import { SearchUserComponent } from './components/search-user/search-user.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AddUserComponent } from './components/add-user/add-user.component';
     UserDetailsComponent,
     UserFormComponent,
     EditUserComponent,
-    AddUserComponent
+    AddUserComponent,
+    SearchUserComponent
   ],
   imports: [
     BrowserModule,

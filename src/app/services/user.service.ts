@@ -51,6 +51,13 @@ export class UserService {
     )
   }
 
+  searchUserList(term: string){
+    return this.httpClient.get(this.annuaireService.API_URL + this.ENDPOINT_USERS + term).pipe(
+      tap((response) => this.log(response)),
+      catchError((error) => this.handleError(error, undefined))
+    )
+  }
+
   private log(response: any){
     console.table(response);
   }
