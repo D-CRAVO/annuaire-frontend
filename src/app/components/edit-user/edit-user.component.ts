@@ -25,8 +25,10 @@ export class EditUserComponent implements OnInit{
   ){}
 
   ngOnInit(): void {
+
     const userId: string | null = this.route.snapshot.paramMap.get('id')
-    console.log(userId)
+
+    console.log('edit-user...userId : ' + userId)
     if (userId){
       forkJoin([
         this.userService.getUserById(+userId), //.subscribe(user => this.user = user)
@@ -35,7 +37,7 @@ export class EditUserComponent implements OnInit{
       ]).subscribe(([user, phones, emails]: [any, any, any]) => {this.updateData(user, phones, emails)})
     }
     // this.user = new User(11, 'Jean', 'Dupont', '123 rue de la poste', '75000', 'Paris')
-    console.table('this.user : ' + this.user)
+    console.table('edit-user...this.user : ' + this.user)
   }
 
   updateData(user: any, phones: any, emails: any){
