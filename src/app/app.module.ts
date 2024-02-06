@@ -13,11 +13,13 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list'
-import {MatFormFieldModule} from '@angular/material/form-field'; 
+import { MatFormFieldModule } from '@angular/material/form-field'; 
+import { MatInputModule } from '@angular/material/input';
 
 import { FormsModule } from '@angular/forms';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { AddUserComponent } from './components/add-user/add-user.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     UserListComponent,
     UserDetailsComponent,
     UserFormComponent,
-    EditUserComponent
+    EditUserComponent,
+    AddUserComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,8 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
     MatIconModule,
     MatDividerModule,
     MatListModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule
   ],
   providers: [
     provideClientHydration()
