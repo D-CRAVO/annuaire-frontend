@@ -1,7 +1,15 @@
-.ng-valid[required] {
-    border-left: 5px solid green;
+.form{
+    display: flex;
+    flex-direction: column;
+    padding: 100px;
+    height: 500px;
 }
 
-.ng-invalid:not(form){
-    border-left: 5px solid red;
+.mat-raised-button{
+    width: 150px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
 }
