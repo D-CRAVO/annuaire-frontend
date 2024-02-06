@@ -4,6 +4,7 @@
             <img mat-card-image src="../../assets/images/Homme.svg" class="img-profil">
         </div>
     </div>
+
     <div class="center-part">
         <mat-card-header>
             <mat-card-title class="mat-card-title" *ngIf="user">
@@ -25,8 +26,10 @@
             </mat-list>
         </mat-card-content>
     </div>
+
     <div class="right-part">
-        <button mat-raised-button color="warn" class="mat-raised-button">Supprimer</button>
+        <button mat-raised-button color="warn" class="mat-raised-button" (click)="deleteUser(user)">Supprimer</button>
+        <button mat-raised-button color="primary" class="mat-raised-button" type="button" (click)="goToEditUser(user)">Editer</button>
     </div>
         
 </mat-card>

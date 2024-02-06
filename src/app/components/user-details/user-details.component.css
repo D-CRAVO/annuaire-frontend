@@ -39,7 +39,8 @@
 }
 
 .mat-raised-button{
-    margin-bottom: 30px;
+    margin: 20px;
+    width: 150px;
 }
 
 .tile{
