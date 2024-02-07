@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AnnuaireService } from '../../services/annuaire.service';
-import { User } from '../../models/User';
 import { PhoneService } from '../../services/phone.service';
 import { UserService } from '../../services/user.service';
 

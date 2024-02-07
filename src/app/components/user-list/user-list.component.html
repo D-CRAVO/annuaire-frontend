@@ -1,8 +1,10 @@
+<app-search-user></app-search-user>
+
 <div class="container">
-    <a routerLink="/user/add" mat-raised-button color="primary">Ajouter</a>
+    <button routerLink="/user/add" mat-raised-button color="primary">Ajouter</button>
 </div>
 
-<mat-card *ngFor="let user of users">
+<mat-card class="mat-card" *ngFor="let user of users">
     <mat-card-title>
         {{user.lastname}} {{user.firstname}}
     </mat-card-title>
