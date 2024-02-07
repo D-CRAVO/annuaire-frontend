@@ -1,1 +1,17 @@
-<p>search-user works!</p>
+<mat-card class="mat-card">
+    <mat-card-content class="mat-card-content">
+        <input 
+            #searchBox
+            type="search"
+            class="search-box"
+            (keyup)="search(searchBox.value)" 
+            placeholder="Rechercher un contact"
+        >
+        <a 
+            *ngFor="let user of users$ | async"
+            (click)="goToUserDetails(user)"
+        >
+            {{ user.name }}
+        </a>
+    </mat-card-content>
+</mat-card>
