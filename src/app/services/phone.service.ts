@@ -22,4 +22,8 @@ export class PhoneService {
   getPhoneById(id: number){
     return this.httpClient.get(this.annuaireService.API_URL+this.ENDPOINT_PHONE+`/${id}`);
   }
+
+  getPhones(){
+    return this.httpClient.get(this.annuaireService.API_URL+this.ENDPOINT_PHONES);
+  }
 }

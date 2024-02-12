@@ -15,12 +15,16 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list'
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
+
+import {AsyncPipe} from '@angular/common';
+import { AutocompleteFilterComponent } from './components/autocomplete-filter/autocomplete-filter.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,8 @@ import { SearchUserComponent } from './components/search-user/search-user.compon
     UserFormComponent,
     EditUserComponent,
     AddUserComponent,
-    SearchUserComponent
+    SearchUserComponent,
+    AutocompleteFilterComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,10 @@ import { SearchUserComponent } from './components/search-user/search-user.compon
     MatDividerModule,
     MatListModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
+    AsyncPipe
   ],
   providers: [
     provideClientHydration()

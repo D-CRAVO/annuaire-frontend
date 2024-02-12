@@ -1,16 +1,18 @@
+<app-autocomplete-filter></app-autocomplete-filter>
+
 <app-search-user></app-search-user>
 
 <div class="container">
     <button routerLink="/user/add" mat-raised-button color="primary">Ajouter</button>
 </div>
 
-<mat-card class="mat-card" *ngFor="let user of users">
-    <mat-card-title>
-        {{user.lastname}} {{user.firstname}}
-    </mat-card-title>
-    <mat-card-content>
-        <div>
+<mat-card class="mat-card" *ngFor="let phone of phones">
+    
+        
+    
+    <mat-card-content class="mat-card-content">
+            {{phone.user.lastname}} {{phone.user.firstname}}
+            {{phone.number}}
             <!-- {{getProfessionalPhoneByUserId(user.id)}} -->
-        </div>
     </mat-card-content>
 </mat-card>

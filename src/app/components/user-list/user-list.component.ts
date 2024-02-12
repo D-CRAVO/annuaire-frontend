@@ -9,11 +9,11 @@ import { UserService } from '../../services/user.service';
   styleUrl: './user-list.component.css'
 })
 export class UserListComponent implements OnInit{
-  users : any;
-  user : any;
-  emails: any;
-  phones: any;
-  phone: any;
+  users : any
+  user : any
+  emails: any
+  phones: any
+  phone: any
 
   constructor(
     private annuaireService: AnnuaireService,
@@ -23,6 +23,7 @@ export class UserListComponent implements OnInit{
 
   ngOnInit(){
     this.userService.getUsers().subscribe(users => this.users = users)
+    this.phoneService.getPhones().subscribe(phones => this.phones = phones)
   }
 
   getProfessionalPhoneByUserId(userId: number){
