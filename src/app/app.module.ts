@@ -16,6 +16,7 @@ import { MatListModule } from '@angular/material/list'
 import { MatFormFieldModule } from '@angular/material/form-field'; 
 import { MatInputModule } from '@angular/material/input';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatMenuModule } from '@angular/material/menu';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserFormComponent } from './components/user-form/user-form.component';
@@ -23,8 +24,11 @@ import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { SearchUserComponent } from './components/search-user/search-user.component';
 
-import {AsyncPipe} from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import { AutocompleteFilterComponent } from './components/autocomplete-filter/autocomplete-filter.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AcceuilComponent } from './components/acceuil/acceuil.component';
 
 @NgModule({
   declarations: [
@@ -36,9 +40,12 @@ import { AutocompleteFilterComponent } from './components/autocomplete-filter/au
     AddUserComponent,
     SearchUserComponent,
     AutocompleteFilterComponent,
+    MenuComponent,
+    AcceuilComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -52,7 +59,8 @@ import { AutocompleteFilterComponent } from './components/autocomplete-filter/au
     MatInputModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
-    AsyncPipe
+    AsyncPipe,
+    MatMenuModule
   ],
   providers: [
     provideClientHydration()

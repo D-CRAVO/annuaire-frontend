@@ -28,6 +28,7 @@ export class UserService {
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
+    
     return this.httpClient.put(this.annuaireService.API_URL, user, httpOptions).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
@@ -35,7 +36,12 @@ export class UserService {
   }
 
   deleteUserById(id: number){
-    this.httpClient.delete(this.annuaireService.API_URL + this.ENDPOINT_USER + `/${id}`).pipe(
+    const httpOptions = {
+      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    }
+    console.log(id);
+    
+    this.httpClient.delete(this.annuaireService.API_URL + this.ENDPOINT_USER + `/${id}`,httpOptions).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
     )
@@ -64,6 +70,7 @@ export class UserService {
 
   private handleError(error: Error, errorValue: any){
     console.error(error);
+    
     return of(errorValue);
   }
 }

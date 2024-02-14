@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AnnuaireService } from '../../services/annuaire.service';
-import { PhoneService } from '../../services/phone.service';
 import { UserService } from '../../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -10,27 +9,18 @@ import { UserService } from '../../services/user.service';
 })
 export class UserListComponent implements OnInit{
   users : any
-  user : any
-  emails: any
-  phones: any
-  phone: any
+  
 
   constructor(
-    private annuaireService: AnnuaireService,
     private userService: UserService,
-    private phoneService: PhoneService
+    private router: Router
   ){}
 
   ngOnInit(){
     this.userService.getUsers().subscribe(users => this.users = users)
-    this.phoneService.getPhones().subscribe(phones => this.phones = phones)
   }
 
-  getProfessionalPhoneByUserId(userId: number){
-    console.log("test")
-    this.phoneService.getPhonesByUserId(userId).subscribe(phones => this.phones = phones)
-    this.phone = this.phones[0].number
-    console.log(this.phone)
-    return this.phone
+  goToUser(userId: number){
+    this.router.navigate(['/user', userId])
   }
 }

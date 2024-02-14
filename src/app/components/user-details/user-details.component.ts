@@ -1,14 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { PhoneService } from '../../services/phone.service';
-import { EmailService } from '../../services/email.service';
-import { Subject, forkJoin, takeUntil } from 'rxjs';
-
-export interface Tile{
-  cols: number;
-  rows: number;
-}
 
 @Component({
   selector: 'app-user-details',
@@ -18,8 +10,6 @@ export interface Tile{
 
 export class UserDetailsComponent {
   user: any;
-  phones : any;
-  emails : any;
   isAddForm: any
 
   constructor(
@@ -27,37 +17,18 @@ export class UserDetailsComponent {
     private router: Router,
 
     private userService: UserService,
-    private phoneService: PhoneService,
-    private emailService: EmailService
   ){}
 
   ngOnInit(){
     this.isAddForm = this.router.url.includes('add')
 
     if(!this.isAddForm){
-      const userId : string | null = this.route.snapshot.paramMap.get('id');
+      const userId : string | null = this.route.snapshot.paramMap.get('id')
 
       if (userId){
-        forkJoin([
-          this.userService.getUserById(+userId), //.subscribe(user => this.user = user)
-          this.phoneService.getPhonesByUserId(+userId), //.subscribe(phones => this.phones = phones)
-          this.emailService.getEmailsByUserId(+userId) //.subscribe(emails => this.emails = emails)
-        ]).subscribe(([user, phones, emails]: [any, any, any]) => {this.updateData(user, phones, emails)})
+        this.userService.getUserById(+userId).subscribe(user => this.user = user)
       }
     }
-    
-
-    // if (userId){
-    //     this.userService.getUserById(+userId).subscribe(user => this.user = user)
-    //     this.phoneService.getPhonesByUserId(+userId).subscribe(phones => this.phones = phones)
-    //     this.emailService.getEmailsByUserId(+userId).subscribe(emails => this.emails = emails)
-    // }
-  }
-
-  updateData(user: any, phones: any, emails: any){
-    this.user = user
-    this.phones = phones
-    this.emails = emails
   }
 
   goToUserList(){
@@ -70,7 +41,9 @@ export class UserDetailsComponent {
   }
 
   deleteUser(user: any){
+    console.log(user);
+    
     this.userService.deleteUserById(user.id)
-    this.goToUserList;
+    this.goToUserList
   }
 }

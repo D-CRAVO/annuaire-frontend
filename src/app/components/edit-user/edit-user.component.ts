@@ -22,7 +22,8 @@ export class EditUserComponent implements OnInit{
     private userService: UserService,
     private phoneService: PhoneService,
     private emailService: EmailService
-  ){}
+  ){
+  }
 
   ngOnInit(): void {
 
@@ -30,19 +31,8 @@ export class EditUserComponent implements OnInit{
 
     console.log('edit-user...userId : ' + userId)
     if (userId){
-      forkJoin([
-        this.userService.getUserById(+userId), //.subscribe(user => this.user = user)
-        this.phoneService.getPhonesByUserId(+userId), //.subscribe(phones => this.phones = phones)
-        this.emailService.getEmailsByUserId(+userId) //.subscribe(emails => this.emails = emails)
-      ]).subscribe(([user, phones, emails]: [any, any, any]) => {this.updateData(user, phones, emails)})
+      this.userService.getUserById(+userId).subscribe(user => this.user = user)
     }
-    // this.user = new User(11, 'Jean', 'Dupont', '123 rue de la poste', '75000', 'Paris')
-    console.table('edit-user...this.user : ' + this.user)
   }
-
-  updateData(user: any, phones: any, emails: any){
-    this.user = user
-    this.phones = phones
-    this.emails = emails
-  }
+ 
 }

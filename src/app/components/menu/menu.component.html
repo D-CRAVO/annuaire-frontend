@@ -1,0 +1,23 @@
+<p>menu works!</p>
+
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>home</mat-icon>
+    <a href="/accueil">Accueil</a>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>list</mat-icon>
+    <a href="/users">Tous les contacts</a>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>star</mat-icon>
+    <a href="#">Favoris</a>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>logout-rounded</mat-icon>
+    <a href="#">Deconnexion</a>
+  </button>
+</mat-menu>

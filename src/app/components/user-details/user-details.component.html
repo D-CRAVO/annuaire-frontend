@@ -1,3 +1,5 @@
+<app-menu></app-menu>
+
 <mat-card class="mat-card">
     <div class="left-part">
         <div class="container-img-profile">
@@ -19,10 +21,10 @@
                 <mat-list-item class="mat-list-item" *ngIf="user">Adresse : {{user.address}}</mat-list-item>
                 <mat-list-item class="mat-list-item" *ngIf="user">Code postal : {{user.zipCode}}</mat-list-item>
                 <mat-list-item class="mat-list-item" *ngIf="user">Ville : {{user.city}}</mat-list-item>
-                <mat-list-item class="mat-list-item" *ngIf="user">Tél. personnel : {{phones[0].number}}</mat-list-item>
-                <mat-list-item class="mat-list-item" *ngIf="user">Tél. professionnel : {{phones[1].number}}</mat-list-item>
-                <mat-list-item class="mat-list-item" *ngIf="user">Email personnel : {{emails[0].address}}</mat-list-item>
-                <mat-list-item class="mat-list-item" *ngIf="user">Email professionnel : {{emails[1].address}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Tél. personnel : {{user.phones[0].number}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Tél. professionnel : {{user.phones[1].number}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Email personnel : {{user.emails[0].address}}</mat-list-item>
+                <mat-list-item class="mat-list-item" *ngIf="user">Email professionnel : {{user.emails[1].address}}</mat-list-item>
             </mat-list>
         </mat-card-content>
     </div>

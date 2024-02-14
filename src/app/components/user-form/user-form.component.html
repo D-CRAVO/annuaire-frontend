@@ -1,3 +1,5 @@
+<app-menu></app-menu>
+
 <form *ngIf="user" (ngSubmit)="onSubmit()" #userForm="ngForm" class="form">
 
     <mat-form-field>
@@ -13,7 +15,7 @@
     <mat-form-field>
         <mat-label>Prénom : </mat-label>
         <input matInput type="text" id="firstname" 
-            [(ngModel)]="user.firstname" name="firstname" #firstname="ngModel">
+            [(ngModel)]="user.firstname" name="firstname" #firstname="ngModel" placeholder="Firstname">
     </mat-form-field>
     <mat-form-field>
         <mat-label>Adresse : </mat-label>
@@ -36,25 +38,25 @@
     <mat-form-field>
         <mat-label>Tél. personnel </mat-label>
         <input matInput type="tel"  id="personalPhone" 
-            [(ngModel)]="phones[0].number" name="personalPhone" #personalPhone="ngModel">
+            [(ngModel)]="user.phones[0].number" name="personalPhone" #personalPhone="ngModel">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Tél. professionnel </mat-label>
         <input matInput type="tel" id="professionalPhone" 
-            [(ngModel)]="phones[1].number" name="professionalPhone" #professionalPhone="ngModel">
+            [(ngModel)]="user.phones[1].number" name="professionalPhone" #professionalPhone="ngModel">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Email personnel </mat-label>
         <input matInput type="tel" id="personalEmail" 
-            [(ngModel)]="emails[0].address" name="personalEmail" #personalEmail="ngModel">
+            [(ngModel)]="user.emails[0].address" name="personalEmail" #personalEmail="ngModel">
     </mat-form-field>
 
     <mat-form-field>
         <mat-label>Email professionnel </mat-label>
         <input matInput type="tel" id="professionalEmail" 
-            [(ngModel)]="emails[1].address" name="professionalEmail" #professionalEmail="ngModel">
+            [(ngModel)]="user.emails[1].address" name="professionalEmail" #professionalEmail="ngModel">
     </mat-form-field>
 
     <div class="container">
