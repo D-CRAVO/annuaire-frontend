@@ -1,27 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../../services/user.service';
-import { PhoneService } from '../../services/phone.service';
-import { EmailService } from '../../services/email.service';
-import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-edit-user',
   templateUrl: './edit-user.component.html',
   styleUrl: './edit-user.component.css'
 })
-export class EditUserComponent implements OnInit{
+export class EditUserComponent implements OnInit, OnDestroy{
 
   user: any
-  phones: any
-  emails: any
-  // user: User |undefined
+  subscription: any
 
   constructor(
     private route: ActivatedRoute,
     private userService: UserService,
-    private phoneService: PhoneService,
-    private emailService: EmailService
   ){
   }
 
@@ -31,8 +24,12 @@ export class EditUserComponent implements OnInit{
 
     console.log('edit-user...userId : ' + userId)
     if (userId){
-      this.userService.getUserById(+userId).subscribe(user => this.user = user)
+      this.subscription = this.userService.getUserById(+userId).subscribe(user => this.user = user)
     }
+  }
+
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe()
   }
  
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 
@@ -8,9 +8,10 @@ import { UserService } from '../../services/user.service';
   styleUrl: './user-details.component.css',
 })
 
-export class UserDetailsComponent {
+export class UserDetailsComponent implements OnInit, OnDestroy{
   user: any;
   isAddForm: any
+  private subscription: any
 
   constructor(
     private route: ActivatedRoute,
@@ -19,16 +20,20 @@ export class UserDetailsComponent {
     private userService: UserService,
   ){}
 
-  ngOnInit(){
+  ngOnInit(): void{
     this.isAddForm = this.router.url.includes('add')
 
     if(!this.isAddForm){
       const userId : string | null = this.route.snapshot.paramMap.get('id')
 
       if (userId){
-        this.userService.getUserById(+userId).subscribe(user => this.user = user)
+        this.subscription = this.userService.getUserById(+userId).subscribe(user => this.user = user)
       }
     }
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 
   goToUserList(){
@@ -36,14 +41,10 @@ export class UserDetailsComponent {
   }
 
   goToEditUser(user: any){
-    console.table(user)
     this.router.navigate(['edit/user', user.id])
   }
 
   deleteUser(user: any){
-    console.log(user);
-    
-    this.userService.deleteUserById(user.id)
-    this.goToUserList
+    this.userService.deleteUserById(user.id).subscribe(_ => this.goToUserList());
   }
 }

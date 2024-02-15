@@ -36,12 +36,7 @@ export class UserService {
   }
 
   deleteUserById(id: number){
-    const httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
-    }
-    console.log(id);
-    
-    this.httpClient.delete(this.annuaireService.API_URL + this.ENDPOINT_USER + `/${id}`,httpOptions).pipe(
+    return this.httpClient.delete(this.annuaireService.API_URL + this.ENDPOINT_USER + `/${id}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
     )

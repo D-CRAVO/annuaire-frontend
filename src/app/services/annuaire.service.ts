@@ -9,7 +9,7 @@ export class AnnuaireService {
   readonly API_URL = "http://localhost:8080"
 
   constructor(
-    private httpClient: HttpClient
+    // private httpClient: HttpClient
   ) { 
   }
 }

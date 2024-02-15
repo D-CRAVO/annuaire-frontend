@@ -6,6 +6,7 @@ import {AsyncPipe} from '@angular/common';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-autocomplete-filter',
@@ -13,15 +14,20 @@ import {MatFormFieldModule} from '@angular/material/form-field';
   styleUrl: './autocomplete-filter.component.css'
 })
 export class AutocompleteFilterComponent implements OnInit{
-  myControl = new FormControl('');
-  options: string[] = ['One', 'Two', 'Three'];
-  filteredOptions: Observable<string[]>;
+  myControl = new FormControl('')
+  options: string[] = ['One', 'Two', 'Three']
+  filteredOptions: Observable<string[]>
+  users: any
 
-  constructor(){
+  constructor(
+    private userService: UserService
+  ){
     this.filteredOptions = new Observable<string[]>
+    
   }
 
   ngOnInit() {
+    this.userService.getUsers().subscribe(users => this.users = users)
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),

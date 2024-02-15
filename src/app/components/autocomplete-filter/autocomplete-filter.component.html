@@ -1,18 +1,17 @@
-<p>autocomplete-filter works!</p>
-<form class="example-form">
-    <mat-form-field class="example-full-width">
-      <mat-label>Champs de recherche</mat-label>
-      <input type="text"
-             placeholder="Saisissez votre recherche"
-             aria-label="recherche"
-             matInput
-             [formControl]="myControl"
-             [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete">
-        @for (option of filteredOptions | async; track option) {
-          <mat-option [value]="option">{{option}}</mat-option>
-        }
-      </mat-autocomplete>
-    </mat-form-field>
-  </form>
+<form class="form">
+  <mat-form-field class="full-width">
+    <mat-label>Champs de recherche</mat-label>
+    <input type="text"
+           placeholder="Saisissez votre recherche"
+           aria-label="search"
+           matInput
+           [formControl]="myControl"
+           [matAutocomplete]="auto">
+    <mat-autocomplete #auto="matAutocomplete">
+      @for (option of filteredOptions | async; track option) {
+        <mat-option [value]="option">{{option}}</mat-option>
+      }
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
   
