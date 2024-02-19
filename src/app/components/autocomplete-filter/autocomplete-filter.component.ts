@@ -27,7 +27,7 @@ export class AutocompleteFilterComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(users => this.users = users)
+    this.getUsersLastname()
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       map(value => this._filter(value || '')),
@@ -38,5 +38,12 @@ export class AutocompleteFilterComponent implements OnInit{
     const filterValue = value.toLowerCase();
 
     return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  private getUsersLastname(){
+    this.userService.getUsers().subscribe(users => this.users = users)
+    for(let user in this.users){
+      console.log(user)
+    }
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -11,14 +12,16 @@ import { UserService } from '../../services/user.service';
 export class UserDetailsComponent implements OnInit, OnDestroy{
   user: any;
   isAddForm: any
-  private subscription: any
+  private subscription: Subscription
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
 
     private userService: UserService,
-  ){}
+  ){
+    this.subscription = new Subscription
+  }
 
   ngOnInit(): void{
     this.isAddForm = this.router.url.includes('add')

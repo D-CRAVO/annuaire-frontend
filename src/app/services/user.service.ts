@@ -53,7 +53,7 @@ export class UserService {
   }
 
   searchUserList(term: string){
-    return this.httpClient.get(`${this.annuaireService.API_URL} {${term}}`).pipe(
+    return this.httpClient.get(`${this.annuaireService.API_URL}/{${term}}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
     )
