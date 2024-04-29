@@ -7,41 +7,33 @@ import { catchError, of, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-
   readonly ENDPOINT_USERS = "/users";
   readonly ENDPOINT_USER = "/user";
-
   constructor(private httpClient: HttpClient, private annuaireService: AnnuaireService) { }
-
   getUsers(){
     return this.httpClient.get(this.annuaireService.API_URL + this.ENDPOINT_USERS);
   }
-
   getUserById(id: number){
     return this.httpClient.get(this.annuaireService.API_URL + this.ENDPOINT_USER + `/${id}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
     )
   }
-
   updateUser(user: any){
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
-    
     return this.httpClient.put(this.annuaireService.API_URL, user, httpOptions).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
     )
   }
-
   deleteUserById(id: number){
     return this.httpClient.delete(this.annuaireService.API_URL + this.ENDPOINT_USER + `/${id}`).pipe(
       tap((response) => this.log(response)),
       catchError((error) => this.handleError(error, undefined))
     )
   }
-
   addUser(user: any){
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -51,7 +43,6 @@ export class UserService {
       catchError((error) => this.handleError(error, undefined))
     )
   }
-
   searchUserList(term: string){
     return this.httpClient.get(`${this.annuaireService.API_URL}/{${term}}`).pipe(
       tap((response) => this.log(response)),

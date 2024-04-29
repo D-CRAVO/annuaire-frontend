@@ -13,7 +13,6 @@ export class UserDetailsComponent implements OnInit, OnDestroy{
   user: any;
   isAddForm: any
   private subscription: Subscription
-
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -22,7 +21,6 @@ export class UserDetailsComponent implements OnInit, OnDestroy{
   ){
     this.subscription = new Subscription
   }
-
   ngOnInit(): void{
     this.isAddForm = this.router.url.includes('add')
 
@@ -34,19 +32,15 @@ export class UserDetailsComponent implements OnInit, OnDestroy{
       }
     }
   }
-
   ngOnDestroy(): void {
     this.subscription.unsubscribe()
   }
-
   goToUserList(){
     this.router.navigate(['/users'])
   }
-
   goToEditUser(user: any){
     this.router.navigate(['edit/user', user.id])
   }
-
   deleteUser(user: any){
     this.userService.deleteUserById(user.id).subscribe(_ => this.goToUserList());
   }

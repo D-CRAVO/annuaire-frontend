@@ -1,11 +1,8 @@
 <app-menu></app-menu>
-
 <app-autocomplete-filter></app-autocomplete-filter>
-
 <div class="container">
     <button routerLink="/user/add" mat-raised-button color="primary">Ajouter</button>
 </div>
-
 <mat-card class="mat-card" *ngFor="let user of users">
     <mat-card-content class="mat-card-content" >
         <a (click)="goToUser(user.id)">

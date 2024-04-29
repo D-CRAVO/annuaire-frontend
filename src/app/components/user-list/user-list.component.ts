@@ -18,15 +18,12 @@ export class UserListComponent implements OnInit, OnDestroy{
   ){
     this.subscription = new Subscription
   }
-
   ngOnInit(): void{
     this.subscription = this.userService.getUsers().subscribe(users => this.users = users)
   }
-
   ngOnDestroy(): void {
       this.subscription.unsubscribe()
   }
-
   goToUser(userId: number){
     this.router.navigate(['/user', userId])
   }
